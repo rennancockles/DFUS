@@ -12,7 +12,7 @@ class DFUS(object):
 
     def __init__(self, main_url):
         if main_url == '':
-            exit(1)
+            sys.exit(1)
 
         self.DOMAIN = self.get_domain(main_url)
         self.NODES[main_url] = 'white'
@@ -77,4 +77,6 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print "Missing <initial_url> parameter!!"
         print "Usage: python dfus.py <initial_url>"
+        sys.exit(1)
+
     DFUS(sys.argv[1])
