@@ -20,7 +20,7 @@ class DFUS(object):
         self.dfus(main_url)
 
         if all(map(lambda v: v == 'black', self.NODES.values())):
-            out = '\n'.join(self.NODES.keys())
+            out = '\n'.join(self.NODES.keys().sort())
             print 'All nodes visited!'
             print 'Total of %d nodes obtained' % len(self.NODES)
             # print out
