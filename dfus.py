@@ -20,12 +20,12 @@ class DFUS(object):
         self.dfus(main_url)
 
         if all(map(lambda v: v == 'black', self.NODES.values())):
-            urls = self.NODES.keys()
+            urls = list(self.NODES.keys())
             urls.sort()
             out = '\n'.join(urls)
 
-            print 'All nodes visited!'
-            print 'Total of %d nodes obtained!' % len(self.NODES)
+            print('All nodes visited!')
+            print('Total of %d nodes obtained!' % len(self.NODES))
 
             with open('dfus.txt', 'w') as f:
                 f.write('Domain: %s \n\n' % self.DOMAIN)
@@ -40,7 +40,7 @@ class DFUS(object):
         try:
             r = requests.get(url)
             if r.ok:
-                matches = re.findall(regex, r.content)
+                matches = re.findall(regex, r.text)
                 return list(set(matches))
             else:
                 print("Not OK for url: %s" % url)
@@ -75,8 +75,8 @@ class DFUS(object):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print "Missing <initial_url> parameter!!"
-        print "Usage: python dfus.py <initial_url>"
+        print("Missing <initial_url> parameter!!")
+        print("Usage: python dfus.py <initial_url>")
         sys.exit(1)
 
     DFUS(sys.argv[1])
