@@ -3,6 +3,7 @@
 import requests
 import tldextract
 import re
+import sys
 
 
 class DFUS(object):
@@ -22,7 +23,7 @@ class DFUS(object):
             out = '\n'.join(self.NODES.keys())
             print 'All nodes visited!'
             print 'Total of %d nodes obtained' % len(self.NODES)
-            print out
+            # print out
 
             with open('dfus.txt', 'w') as f:
                 f.write('Domain: %s \n\n' % self.DOMAIN)
@@ -71,4 +72,7 @@ class DFUS(object):
 
 
 if __name__ == '__main__':
-    DFUS('')
+    if len(sys.argv) < 2:
+        print "Missing <initial_url> parameter!!"
+        print "Usage: python dfus.py <initial_url>"
+    DFUS(sys.argv[1])
